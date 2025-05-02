@@ -34,7 +34,11 @@ export class AuthService {
     return bcrypt.compare(plainPassword, hashedPassword);
   }
 
-  async generateToken(userId: string, role: string, email: string): Promise<string> {
+  async generateToken(
+    userId: string,
+    role: string,
+    email: string,
+  ): Promise<string> {
     const payload = { sub: userId, role, email };
     return this.jwtService.sign(payload);
   }

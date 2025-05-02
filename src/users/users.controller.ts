@@ -8,11 +8,12 @@ import { AuthGuard } from '@nestjs/passport';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  
   @Post()
   @SetMetadata('role', 'admin') // Gerekli rolü belirtiyoruz
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  async createUser(@Body() createUserDto: CreateUserDto): Promise<{ message: string }> {
+  async createUser(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<{ message: string }> {
     await this.usersService.createUser(createUserDto);
     return { message: 'User created successfully' };
   }

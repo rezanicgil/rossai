@@ -7,7 +7,6 @@ import { UsersModule } from 'src/users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -20,7 +19,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
         signOptions: { expiresIn: '4h' },
       }),
     }),
-    UsersModule
+    UsersModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

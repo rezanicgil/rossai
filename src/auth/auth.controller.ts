@@ -14,7 +14,6 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() loginDto: LoginDto) {
-    
     const user = await this.authService.validateUser({
       email: loginDto.email,
       password: loginDto.password,
@@ -24,7 +23,11 @@ export class AuthController {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
 
-    const token = await this.authService.generateToken(user.id, user.role, user.email,);
+    const token = await this.authService.generateToken(
+      user.id,
+      user.role,
+      user.email,
+    );
     return { accessToken: token };
   }
 }
