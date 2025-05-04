@@ -9,10 +9,16 @@ async function bootstrap() {
   const port = configService.get<number>('PORT') || 8080;
 
   app.enableCors({
-    origin: 'http://localhost:3000,https://dashboard-d8am2mhjp-rezanicgils-projects.vercel.app', 
+    origin: [
+      'http://localhost:3000',
+      'https://dashboard-d8am2mhjp-rezanicgils-projects.vercel.app',
+      'https://dashboard-kappa-five-66.vercel.app',
+      'https://dashboard-aim6zhiyi-rezanicgils-projects.vercel.app',
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
+  
 
   await app.listen(port);
   console.log(`Application is running on: http://localhost:${port}`);
